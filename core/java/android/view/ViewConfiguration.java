@@ -76,7 +76,7 @@ public class ViewConfiguration {
      * a long press
      * @hide
      */
-    public static final int DEFAULT_LONG_PRESS_TIMEOUT = 250;
+    public static final int DEFAULT_LONG_PRESS_TIMEOUT = 300;
 
     /**
      * Defines the default duration in milliseconds between the first tap's up event and the second
@@ -224,7 +224,7 @@ public class ViewConfiguration {
     /**
      * Maximum velocity to initiate a fling, as measured in dips per second
      */
-    private static final int MAXIMUM_FLING_VELOCITY = 21000;
+    private static final int MAXIMUM_FLING_VELOCITY = 16000;
 
     /**
      * Delay before dispatching a recurring accessibility event in milliseconds.
