@@ -977,6 +977,9 @@ final class DefaultPermissionGrantPolicy {
         grantPermissionsToPackage(pm, "com.google.android.googlequicksearchbox", userId,
                 false /* ignoreSystemPackage */, true /*whitelistRestrictedPermissions*/,
                 PHONE_PERMISSIONS);
+
+        // ThemePicker
+        grantSystemFixedPermissionsToSystemPackage(pm, "com.android.wallpaper", userId, STORAGE_PERMISSIONS);
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(PackageManagerWrapper pm,
