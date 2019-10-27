@@ -256,4 +256,16 @@
     <string name="config_batterymeterRLandBoltPathStyleB" translatable="false">@string/config_batterymeterLandBoltPathStyleB</string>
     <string name="config_batterymeterRLandPowersavePathStyleB" translatable="false">@string/config_batterymeterRLandPerimeterPathStyleB</string>
     <string name="config_batterymeterRLandErrorPerimeterPathStyleB" translatable="false">@string/config_batterymeterRLandPerimeterPathStyleB</string>
+
+    <!-- Whether device supports gestures on fingerprint sensor -->
+    <bool name="config_supportsGesturesOnFingerprintSensor">false</bool>
+    
+    <!-- System Info -->
+    <bool name="config_supportSystemInfo">false</bool>
+    <string name="config_sysCPUTemp"></string>
+    <string name="config_sysBatteryTemp"></string>
+    <string name="config_sysGPUFreq"></string>
+    <string name="config_sysGPULoad"></string>
+    <integer name="config_sysCPUTempMultiplier">1000</integer>
+    <integer name="config_sysBatteryTempMultiplier">10</integer>
 </resources>

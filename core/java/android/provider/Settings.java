@@ -6470,6 +6470,18 @@ public final class Settings {
         public static final String FORCE_EXPANDED_NOTIFICATIONS = "force_expanded_notifications";
 
         /**
+         * Shows system info in QS OFF:0, CPU temp:1, battery temp:2, gpu freq: 3, gpu load: 4
+         * @hide
+         */
+        public static final String QS_SYSTEM_INFO = "qs_system_info";
+
+        /**
+         * Shows system info icon
+         * @hide
+         */
+        public static final String QS_SYSTEM_INFO_ICON = "qs_system_info_icon";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -6600,6 +6612,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AMBIENT_TEXT_COLOR);
             PRIVATE_SETTINGS.add(AMBIENT_TEXT_TYPE_COLOR);
             PRIVATE_SETTINGS.add(MAX_VISIBLE_NOTIFICATION_ICONS);
+            PRIVATE_SETTINGS.add(QS_SYSTEM_INFO);
         }
 
         /**
