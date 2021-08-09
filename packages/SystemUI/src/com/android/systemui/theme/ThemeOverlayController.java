@@ -117,7 +117,7 @@ public class ThemeOverlayController extends CoreStartable implements Dumpable {
             "com.android.system.monet.snowpaintdrop";
     protected static final String OVERLAY_ESPRESSO_THEME =
             "com.android.system.monet.expresso";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
 
     protected static final int NEUTRAL = 0;
