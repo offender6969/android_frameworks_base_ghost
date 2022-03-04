@@ -91,6 +91,7 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_LIGHT_PULSE,
         Settings.System.QS_PANEL_STYLE,
         Settings.System.MEDIA_ARTWORK_BLUR_ENABLED,
-        Settings.System.MEDIA_ARTWORK_BLUR_RADIUS
+        Settings.System.MEDIA_ARTWORK_BLUR_RADIUS,
+        Settings.System.HEADS_UP_NOTIFICATIONS_THRESHOLD
     };
 }
