@@ -93,6 +93,7 @@ public class SystemSettings {
         Settings.System.MEDIA_ARTWORK_BLUR_ENABLED,
         Settings.System.MEDIA_ARTWORK_BLUR_RADIUS,
         Settings.System.HEADS_UP_NOTIFICATIONS_THRESHOLD,
-        Settings.System.NOTIFICATION_HEADERS
+        Settings.System.NOTIFICATION_HEADERS,
+        Settings.System.MAX_VISIBLE_NOTIFICATION_ICONS
     };
 }
