@@ -25,6 +25,8 @@ import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.app.Notification;
 import android.content.Context;
+import android.content.ContentResolver;
+import android.os.UserHandle;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -156,6 +158,8 @@ public class NotificationMediaManager implements Dumpable, TunerService.Tunable 
 
     private boolean mShowMediaMetadata;
     private int mAlbumArtFilter;
+    private float mCurrentLSBlurRadius;
+    private float mLSBlurRadius;
 
     private final MediaController.Callback mMediaListener = new MediaController.Callback() {
         @Override
@@ -594,13 +598,43 @@ public class NotificationMediaManager implements Dumpable, TunerService.Tunable 
         Trace.endSection();
     }
 
+    private float getLSBlurRadius() {
+        mCurrentLSBlurRadius = Settings.System.getFloatForUser(mContext.getContentResolver(),
+                Settings.System.LS_MEDIA_FILTER_BLUR_RADIUS, 25f, UserHandle.USER_CURRENT);
+        return mCurrentLSBlurRadius;
+    }
+
     private void finishUpdateMediaMetaData(boolean metaDataChanged, boolean allowEnterAnimation,
             @Nullable Bitmap bmp) {
         Drawable artworkDrawable = null;
         // set media artwork as lockscreen wallpaper if player is playing
         if (bmp != null && (mShowMediaMetadata || !ENABLE_LOCKSCREEN_WALLPAPER) &&
                 PlaybackState.STATE_PLAYING == getMediaControllerPlaybackState(mMediaController)) {
-            artworkDrawable = new BitmapDrawable(mBackdropBack.getResources(), bmp);
+            switch (mAlbumArtFilter) {
+                case 0:
+                default:
+                    artworkDrawable = new BitmapDrawable(mBackdropBack.getResources(), bmp);
+                    break;
+                case 1:
+                    artworkDrawable = new BitmapDrawable(mBackdropBack.getResources(),
+                        ImageHelper.toGrayscale(bmp));
+                    break;
+                case 2:
+                    Drawable aw = new BitmapDrawable(mBackdropBack.getResources(), bmp);
+                    artworkDrawable = new BitmapDrawable(ImageHelper.getColoredBitmap(aw,
+                        mContext.getResources().getColor(R.color.accent_device_default_light)));
+                    break;
+                case 3:
+                    mLSBlurRadius = getLSBlurRadius();
+                    artworkDrawable = new BitmapDrawable(mBackdropBack.getResources(),
+                        ImageHelper.getBlurredImage(mContext, bmp, mLSBlurRadius));
+                    break;
+                case 4:
+                    mLSBlurRadius = getLSBlurRadius();
+                    artworkDrawable = new BitmapDrawable(mBackdropBack.getResources(),
+                        ImageHelper.getGrayscaleBlurredImage(mContext, bmp, mLSBlurRadius));
+                    break;
+            }
         }
         boolean hasMediaArtwork = artworkDrawable != null;
         boolean allowWhenShade = false;
