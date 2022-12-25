@@ -6332,6 +6332,11 @@ public final class Settings {
          */
         public static final String QS_WEATHER_POSITION = "qs_weather_position";
         
+	/**
+         * @hide
+         */
+        public static final String VOLUME_MEDIA_OUTPUT_TOGGLE = "volume_media_output_toggle";
+
         /**
          * Size of gesture bar radius.
          * @hide
