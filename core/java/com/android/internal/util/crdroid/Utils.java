@@ -16,6 +16,12 @@
 
 package com.android.internal.util.crdroid;
 
+
+import android.app.AlertDialog;
+import android.app.IActivityManager;
+import android.app.ActivityManager;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -26,7 +32,14 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+import com.android.internal.R;
+
+import java.lang.ref.WeakReference;
+
+>>>>>>> c9a776e46600 (utils: Import Settings restart prompt api)
 import java.util.List;
 
 public class Utils {
@@ -98,4 +111,49 @@ public class Utils {
         }
         return needsNav;
     }
+    
+   public static void showSettingsRestartDialog(Context context) {
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.settings_restart_title)
+                .setMessage(R.string.settings_restart_message)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        restartSettings(context);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    public static void restartSettings(Context context) {
+        new restartSettingsTask(context).execute();
+    }
+
+    private static class restartSettingsTask extends AsyncTask<Void, Void, Void> {
+        private WeakReference<Context> mContext;
+
+        public restartSettingsTask(Context context) {
+            super();
+            mContext = new WeakReference<>(context);
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                ActivityManager am =
+                        (ActivityManager) mContext.get().getSystemService(Context.ACTIVITY_SERVICE);
+                IActivityManager ams = ActivityManager.getService();
+                for (ActivityManager.RunningAppProcessInfo app: am.getRunningAppProcesses()) {
+                    if ("com.android.settings".equals(app.processName)) {
+                    	ams.killApplicationProcess(app.processName, app.uid);
+                        break;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
 }
