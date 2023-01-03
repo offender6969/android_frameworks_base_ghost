@@ -138,13 +138,15 @@ class DefaultClock(
             clocks.forEach { it.onTimeZoneChanged(timeZone) }
 
         override fun onFontSettingChanged() {
+            val customTextSize = Secure.getIntForUser(ctx.getContentResolver(),
+                Secure.KG_BIG_CLOCK_TEXT_SIZE, 86, UserHandle.USER_CURRENT)
             smallClock.setTextSize(
                 TypedValue.COMPLEX_UNIT_PX,
                 resources.getDimensionPixelSize(R.dimen.small_clock_text_size).toFloat()
             )
             largeClock.setTextSize(
                 TypedValue.COMPLEX_UNIT_PX,
-                resources.getDimensionPixelSize(R.dimen.large_clock_text_size).toFloat()
+                resources.getDimensionPixelSize(R.dimen.clock_text_size_base).toFloat() * customTextSize
             )
             recomputePadding()
         }
