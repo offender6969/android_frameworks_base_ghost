@@ -133,8 +133,8 @@ public class Flags {
     public static final ReleasedFlag NEW_USER_SWITCHER =
             new ReleasedFlag(500);
 
-    public static final ReleasedFlag COMBINED_QS_HEADERS =
-            new ReleasedFlag(501);
+    public static final SysPropBooleanFlag COMBINED_QS_HEADERS =
+            new SysPropBooleanFlag(501, "persist.sys.flags.combined_qs_headers", true);
 
     public static final ResourceBooleanFlag PEOPLE_TILE =
             new ResourceBooleanFlag(502, R.bool.flag_conversations);
