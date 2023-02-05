@@ -33,4 +33,6 @@
     <color name="qs_translucent_bg">#59FFFFFF</color>
 
     <color name="surface_aqua">@color/surface_aqua_light</color>
+   
+    <color name="qs_white_bg">@android:color/system_neutral1_0</color>
 </resources>
