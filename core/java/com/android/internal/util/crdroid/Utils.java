@@ -32,14 +32,10 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
 import com.android.internal.R;
 
 import java.lang.ref.WeakReference;
-
->>>>>>> c9a776e46600 (utils: Import Settings restart prompt api)
 import java.util.List;
 
 public class Utils {
