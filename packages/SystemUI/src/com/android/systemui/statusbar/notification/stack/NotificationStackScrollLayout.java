@@ -798,19 +798,6 @@ public class NotificationStackScrollLayout extends ViewGroup implements Dumpable
         super.onDetachedFromWindow();
         mCustomSettingsObserver.stop();
     }
-    
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        mCustomSettingsObserver.observe();
-        mCustomSettingsObserver.update();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        mCustomSettingsObserver.stop();
-    }
 
     @Override
     @ShadeViewRefactor(RefactorComponent.SHADE_VIEW)
