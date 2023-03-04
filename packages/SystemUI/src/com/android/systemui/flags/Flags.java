@@ -134,7 +134,7 @@ public class Flags {
             new ReleasedFlag(500);
 
     public static final SysPropBooleanFlag COMBINED_QS_HEADERS =
-            new SysPropBooleanFlag(501, "persist.sys.flags.combined_qs_headers", true);
+            new SysPropBooleanFlag(501, "persist.sys.flags.combined_qs_headers");
 
     public static final ResourceBooleanFlag PEOPLE_TILE =
             new ResourceBooleanFlag(502, R.bool.flag_conversations);
